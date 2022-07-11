@@ -1,0 +1,50 @@
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NjU0NzYyOX0.1EEee5UXC3uko87u3Qmwj9a8L9rXjnBNdfnnBGybIuU
+@content-type-form = application/x-www-form-urlencoded
+@content-type-json = application/json
+###
+
+POST http://localhost:8080/api/login HTTP/1.1 
+content-type: {{content-type-form}}
+
+username=mariane
+&password=Inn*v@01
+
+###
+
+GET http://localhost:8080/api/users HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:8080/api/users/5 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+PUT http://localhost:8080/api/users/update/5 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+    "id": 7,
+    "name": "PEDRO MARIANO DI ESPINDULA",
+    "username": "PEDRO",
+    "password": "1234",
+    "roles": [
+        {
+            "id": 2,
+            "name": "ROLE_MANAGER"
+        },{
+            "id": 4,
+            "name": "ROLE_SUPER_ADMIN"
+        }
+    ]
+}
+
+###
+
+DELETE http://localhost:8080/api/users/delete/7 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}

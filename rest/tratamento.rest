@@ -1,0 +1,36 @@
+
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NDQwOTAwNn0.1orFfOLzvxJPV784N0I9_2v196rCgG412BQWkNSGoa4
+@content-type-form = application/x-www-form-urlencoded
+@content-type-json = application/json
+###
+
+GET http://localhost:8080/api/tratamentos/searchPaged?search= HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+###
+
+GET http://localhost:8080/api/tratamentos/1 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+###
+
+POST http://localhost:8080/api/tratamentos HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+    "descricao": "Sra.",
+    "inativo": false
+}
+###
+
+PUT http://localhost:8080/tratamentos/1 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+  "codigo": 1,
+  "codigoCorporativo": "linha A",
+  "descricao": "linha A",
+  "inativo": false
+}

@@ -1,0 +1,80 @@
+
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NzU0ODIxOX0.Y7mU9hhiCWEoLkWg9PzQ1qnN6HpXBBlxIgVnXYOSZ_8
+
+@content-type-form = application/x-www-form-urlencoded
+
+@content-type-json = application/json
+
+###
+
+GET http://localhost:8080/api/pessoas/importacaoPessoa HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:8080/api/pessoas/1000 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+###
+
+POST http://localhost:8080/api/pessoas/identificacao HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+    "buscaCorporativa": false,
+    "nome": "MARIA"
+}
+
+###
+
+POST http://localhost:8080/api/pessoas HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+    "nome": "Carlos Alberto de Almeida Jr"
+}
+###
+
+PUT http://localhost:8080/api/pessoas/1326 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+{
+      "id": 1326,
+      "corporativo": "770056011266005",
+      "publico": {
+        "id": 3,
+        "corporativo": null,
+        "descricao": "SEGURADO VITALICIO",
+        "inativo": false
+      },
+      "status": {
+        "id": 1,
+        "corporativo": null,
+        "descricao": "ATIVO",
+        "inativo": false
+      },
+      "pfj": "FISICA",
+      "naocontactar": ["TELEFONE"],
+      "tratamento": null,
+      "nome": "PEDRO GRECO NETO",
+      "sexo": {
+        "id": 2,
+        "corporativo": null,
+        "descricao": "MASCULINO",
+        "inativo": false
+      },
+      "email": "teste@teste.com",
+      "telefone": "(11) 5555-5555",
+      "celular": "(11) 950297851",
+      "whatsApp": false,
+      "rgie": "555555555-55",
+      "cpf": "01469170817",
+      "cnh": "55555555",
+      "passaporte": "555555555555",
+      "nascimento": "1956-01-27",
+      "enderecos": []
+    }

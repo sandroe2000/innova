@@ -1,0 +1,46 @@
+
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NzU1OTA2OX0.5XcMfpF0pcU2yctGLeH_Rx2udT-GDyCqXpU66JuomJk
+
+@content-type-form = application/x-www-form-urlencoded
+
+@content-type-json = application/json
+
+###
+
+GET http://localhost:8080/api/ceps/importacaoCEP HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+
+GET http://localhost:8080/api/ceps/uf HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:8080/api/ceps/localidade/RJ HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:8080/api/ceps/bairro/RIO%20DE%20JANEIRO HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:8080/api/ceps/pesquisar/22291070 HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
+
+
+GET http://localhost:8080/api/ceps/pesquisarLog/MOURA%20BRITO HTTP/1.1
+content-type: {{content-type-json}}
+Authorization: Bearer {{token}}
+
+###
