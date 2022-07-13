@@ -5,7 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Table(indexes = @Index(columnList = "log_no"))
 public class Logradouro implements Serializable  {
 
     @Id
@@ -39,12 +41,18 @@ public class Logradouro implements Serializable  {
     @Column(name = "log_no_abrev")
     private String logNoAbrev;    
 
-    @ManyToOne
-    private Uf uf;
+    @Column(name = "ufe_sg")
+    private String ufeSg;
 
-    @ManyToOne
-    private Localidade localidade;
+    @Column(name = "loc_nu")
+    private Long locNu;
 
-    @ManyToOne
-    private Bairro bairro;
+    @Column(name = "loc_no")
+    private String locNo;
+
+    @Column(name = "bai_nu")
+    private Long baiNu;
+
+    @Column(name = "bai_no")
+    private String baiNo;
 }

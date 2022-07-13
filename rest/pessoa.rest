@@ -1,5 +1,5 @@
 
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NzU0ODIxOX0.Y7mU9hhiCWEoLkWg9PzQ1qnN6HpXBBlxIgVnXYOSZ_8
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1Nzc4MDQzMH0.0ouIBkgSRLvFEo9H7FY5qeY7en8EnuBApi2jI1u-JIc
 
 @content-type-form = application/x-www-form-urlencoded
 
@@ -24,7 +24,7 @@ Authorization: Bearer {{token}}
 
 {
     "buscaCorporativa": false,
-    "nome": "MARIA"
+    "nome": "MARIA CLARA"
 }
 
 ###

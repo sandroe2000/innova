@@ -19,6 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Table(indexes = @Index(columnList = "nome"))
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 2905651040314410436L;

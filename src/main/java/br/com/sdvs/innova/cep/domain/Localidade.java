@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,6 +29,6 @@ public class Localidade implements Serializable  {
 
     private String cep;
 
-    @ManyToOne
-    private Uf uf;
+    @Column(name = "ufe_sg")
+    private String ufeSg;
 }

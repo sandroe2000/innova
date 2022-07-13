@@ -1,4 +1,4 @@
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NjU0NzYyOX0.1EEee5UXC3uko87u3Qmwj9a8L9rXjnBNdfnnBGybIuU
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQVJJQU5FIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfTUFOQUdFUiIsIlJPTEVfU1VQRVJfQURNSU4iXSwiaXNzIjoiL2FwaS9sb2dpbiIsImV4cCI6MTY1NzU5OTUyMX0.P8bvyeMiWS1k97r4uCPFbU-whNq5_1X75C2SwLEbImo
 @content-type-form = application/x-www-form-urlencoded
 @content-type-json = application/json
 ###
@@ -17,7 +17,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET http://localhost:8080/api/users/5 HTTP/1.1
+GET http://localhost:8080/api/users/1 HTTP/1.1
 content-type: {{content-type-json}}
 Authorization: Bearer {{token}}
 

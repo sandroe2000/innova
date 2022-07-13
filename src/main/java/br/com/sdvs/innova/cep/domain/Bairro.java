@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -28,10 +27,9 @@ public class Bairro implements Serializable  {
     @Column(name = "bai_no")
     private String baiNo;
 
-    @ManyToOne
-    private Uf uf;
+    @Column(name = "ufe_sg")
+    private String ufeSg;
 
-    @ManyToOne
-    private Localidade localidade;
-    
+    @Column(name = "loc_nu")
+    private Long locNu;
 }

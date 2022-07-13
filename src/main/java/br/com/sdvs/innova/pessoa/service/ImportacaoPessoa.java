@@ -28,6 +28,9 @@ public class ImportacaoPessoa {
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
     private int batchSize;
 
+    @Value("${base.cep.path}")
+    private String baseCepPath;
+
     @Autowired
     private PessoaRepository repository;
 
@@ -73,7 +76,7 @@ public class ImportacaoPessoa {
             SEGURADO_VITALICIO = tipoDePublicoRepository.findByDescricao("SEGURADO VITALICIO");
             LIMINAR_JUDICIAL= tipoDePublicoRepository.findByDescricao("LIMINAR JUDICIAL");
 
-            inputStream = new FileInputStream("/home/sandro/Dev/innova/samples/DATA_.TXT");
+            inputStream = new FileInputStream(baseCepPath.concat("CONCIERG.TXT"));
             scanner = new Scanner(inputStream, "UTF-8");
 
             List<Pessoa> pessoas = new ArrayList<Pessoa>();

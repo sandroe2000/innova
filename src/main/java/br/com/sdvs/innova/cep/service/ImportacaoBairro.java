@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.com.sdvs.innova.cep.domain.Bairro;
-import br.com.sdvs.innova.cep.domain.Localidade;
-import br.com.sdvs.innova.cep.domain.Uf;
 import br.com.sdvs.innova.cep.repository.BairroRepository;
 
 @Service
@@ -19,6 +17,9 @@ public class ImportacaoBairro {
 
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
     private int batchSize;
+
+    @Value("${base.cep.path}")
+    private String baseCepPath;
 
     @Autowired
     BairroRepository bairroRepository;
@@ -33,7 +34,7 @@ public class ImportacaoBairro {
         int i = 1;
 
         try {
-            inputStream = new FileInputStream("/home/sandro/Dev/innova/samples/CEP/Delimitado/LOG_BAIRRO.TXT");
+            inputStream = new FileInputStream(baseCepPath.concat("LOG_BAIRRO.TXT"));
             scanner = new Scanner(inputStream, "ISO-8859-1");
 
             List<Bairro> bairros = new ArrayList<Bairro>();
@@ -75,16 +76,10 @@ public class ImportacaoBairro {
         
         String[] bairros = line.split("@");
 
-        Uf uf = new Uf();
-        uf.setUfeSg(bairros[1]);
-
-        Localidade localidade = new Localidade();
-        localidade.setLocNu( Long.parseLong(bairros[2]) );
-
         Bairro bairro = new Bairro();
         bairro.setBaiNu( Long.parseLong(bairros[0]) );
-        bairro.setUf( uf );
-        bairro.setLocalidade( localidade );
+        bairro.setUfeSg(bairros[1]);
+        bairro.setLocNu( Long.parseLong(bairros[2]) );
         bairro.setBaiNo( bairros[3]);
         return bairro;
     }

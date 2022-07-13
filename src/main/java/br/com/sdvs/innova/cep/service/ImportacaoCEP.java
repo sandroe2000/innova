@@ -18,6 +18,9 @@ public class ImportacaoCEP {
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
     private int batchSize;
 
+    @Value("${base.cep.path}")
+    private String baseCepPath;
+
     @Autowired
     UfRepository ufRepository;
 
@@ -31,7 +34,7 @@ public class ImportacaoCEP {
         int i = 1;
 
         try {
-            inputStream = new FileInputStream("/home/sandro/Dev/innova/samples/CEP/Delimitado/LOG_FAIXA_UF.TXT");
+            inputStream = new FileInputStream(baseCepPath.concat("LOG_FAIXA_UF.TXT"));
             scanner = new Scanner(inputStream, "ISO-8859-1");
 
             List<Uf> ufs = new ArrayList<Uf>();

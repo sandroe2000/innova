@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.com.sdvs.innova.cep.domain.Localidade;
-import br.com.sdvs.innova.cep.domain.Uf;
 import br.com.sdvs.innova.cep.repository.LocalidadeRepository;
 
 @Service
@@ -18,6 +17,9 @@ public class ImportacaoLocalidade {
 
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
     private int batchSize;
+
+    @Value("${base.cep.path}")
+    private String baseCepPath;
 
     @Autowired
     LocalidadeRepository localidadeRepository;
@@ -32,7 +34,7 @@ public class ImportacaoLocalidade {
         int i = 1;
 
         try {
-            inputStream = new FileInputStream("/home/sandro/Dev/innova/samples/CEP/Delimitado/LOG_LOCALIDADE.TXT");
+            inputStream = new FileInputStream(baseCepPath.concat("LOG_LOCALIDADE.TXT"));
             scanner = new Scanner(inputStream, "ISO-8859-1");
 
             List<Localidade> localidades = new ArrayList<Localidade>();
@@ -73,11 +75,9 @@ public class ImportacaoLocalidade {
     public Localidade getLocalidade(String line){
         
         String[] localidades = line.split("@");
-        Uf uf = new Uf();
-           uf.setUfeSg(localidades[1]);
         Localidade localidade = new Localidade();
         localidade.setLocNu( Long.parseLong( localidades[0] ));
-        localidade.setUf( uf );
+        localidade.setUfeSg(localidades[1]);
         localidade.setLocNo(localidades[2]);
         localidade.setCep(localidades[3]);
         return localidade;

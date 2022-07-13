@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import br.com.sdvs.innova.cep.domain.Bairro;
-import br.com.sdvs.innova.cep.domain.Localidade;
 import br.com.sdvs.innova.cep.domain.Logradouro;
-import br.com.sdvs.innova.cep.domain.Uf;
 import br.com.sdvs.innova.cep.repository.LogradouroRepository;
 
 @Service
@@ -20,6 +17,9 @@ public class ImportacaoLogradouro {
 
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
     private int batchSize;
+
+    @Value("${base.cep.path}")
+    private String baseCepPath;
 
     @Autowired
     LogradouroRepository logradouroRepository;
@@ -33,37 +33,36 @@ public class ImportacaoLogradouro {
         try {
             String[] files = {
                 "LOG_LOGRADOURO_RJ.TXT",
+                "LOG_LOGRADOURO_SC.TXT",
+                "LOG_LOGRADOURO_SP.TXT",
+                "LOG_LOGRADOURO_TO.TXT",
+                "LOG_LOGRADOURO_SE.TXT",
+                "LOG_LOGRADOURO_RS.TXT",
+                "LOG_LOGRADOURO_RR.TXT",
+                "LOG_LOGRADOURO_RO.TXT",
+                "LOG_LOGRADOURO_RN.TXT",
+                "LOG_LOGRADOURO_PR.TXT",
+                "LOG_LOGRADOURO_PI.TXT",
+                "LOG_LOGRADOURO_PE.TXT",
+                "LOG_LOGRADOURO_PB.TXT",
+                "LOG_LOGRADOURO_PA.TXT",
+                "LOG_LOGRADOURO_MT.TXT",
+                "LOG_LOGRADOURO_MS.TXT",
+                "LOG_LOGRADOURO_MG.TXT",
+                "LOG_LOGRADOURO_MA.TXT",
+                "LOG_LOGRADOURO_GO.TXT",
+                "LOG_LOGRADOURO_ES.TXT",
+                "LOG_LOGRADOURO_DF.TXT",
+                "LOG_LOGRADOURO_CE.TXT",
+                "LOG_LOGRADOURO_BA.TXT",
+                "LOG_LOGRADOURO_AP.TXT",
+                "LOG_LOGRADOURO_AM.TXT",
+                "LOG_LOGRADOURO_AL.TXT",
+                "LOG_LOGRADOURO_AC.TXT"
             };
-            /*"LOG_LOGRADOURO_SC.TXT",
-            "LOG_LOGRADOURO_SP.TXT",
-            "LOG_LOGRADOURO_TO.TXT",
-            "LOG_LOGRADOURO_SE.TXT"
-            "LOG_LOGRADOURO_RS.TXT",
-            "LOG_LOGRADOURO_RR.TXT",
-            "LOG_LOGRADOURO_RO.TXT",
-            "LOG_LOGRADOURO_RN.TXT",
-            "LOG_LOGRADOURO_PR.TXT",
-            "LOG_LOGRADOURO_PI.TXT",
-            "LOG_LOGRADOURO_PE.TXT",
-            "LOG_LOGRADOURO_PB.TXT",
-            "LOG_LOGRADOURO_PA.TXT",
-            "LOG_LOGRADOURO_MT.TXT",
-            "LOG_LOGRADOURO_MS.TXT",
-            "LOG_LOGRADOURO_MG.TXT",
-            "LOG_LOGRADOURO_MA.TXT",
-            "LOG_LOGRADOURO_GO.TXT",
-            "LOG_LOGRADOURO_ES.TXT",
-            "LOG_LOGRADOURO_DF.TXT",
-            "LOG_LOGRADOURO_CE.TXT",
-            "LOG_LOGRADOURO_BA.TXT",
-            "LOG_LOGRADOURO_AP.TXT",
-            "LOG_LOGRADOURO_AM.TXT",
-            "LOG_LOGRADOURO_AL.TXT",
-            "LOG_LOGRADOURO_AC.TXT"
-            };*/
 
             for (String file : files) {              
-                inputStream = new FileInputStream("/home/sandro/Dev/innova/samples/CEP/Delimitado/"+file);
+                inputStream = new FileInputStream(baseCepPath+file);
                 scanner = new Scanner(inputStream, "ISO-8859-1");
 
                 List<Logradouro> logradouros = new ArrayList<Logradouro>();
@@ -104,18 +103,11 @@ public class ImportacaoLogradouro {
         
         String[] logradouros = line.split("@");
 
-        Uf uf = new Uf();
-        uf.setUfeSg(logradouros[1]);
-
-        Localidade localidade = new Localidade();
-        localidade.setLocNu( Long.parseLong(logradouros[2]) );
-
-        Bairro bairro = new Bairro();
-        bairro.setBaiNu( Long.parseLong(logradouros[3]) );
-
         Logradouro logradouro = new Logradouro();
         logradouro.setLogNu( Long.parseLong(logradouros[0]) );
-        logradouro.setBairro(bairro);
+        logradouro.setUfeSg( logradouros[1] );
+        logradouro.setLocNu( Long.parseLong(logradouros[2]));
+        logradouro.setBaiNu( Long.parseLong(logradouros[3]) );
         logradouro.setLogNo(logradouros[5]);
         logradouro.setLogComplemento(logradouros[6]);
         logradouro.setCep(logradouros[7]);
